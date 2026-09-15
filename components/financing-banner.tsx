@@ -1,0 +1,1 @@
+import Link from 'next/link'; export default function FinancingBanner() { return (<div className='bg-copper/10 py-3 text-center'><Link href='/financing' className='font-semibold text-copper hover:underline'>Now Accepting Cherry Financing — See Your Payment Options</Link></div>); }

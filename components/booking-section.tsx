@@ -1,7 +1,28 @@
-import Script from 'next/script';
+'use client';
+
+import { useEffect, useRef } from 'react';
 import { SITE } from '@/lib/constants';
 
+const VAGARO_WIDGET_SRC =
+  'https://www.vagaro.com//resources/WidgetEmbeddedLoader/OZqqCJ4tE3CcT3qmV35y6RuQlXiz3avV34mC2PeFJ4mC30m9dSycvCu7gCmjZcoapOUc9CvdfQOapkvdfYQ69WOcW?v=GdgSUhAjnfOAJ28TUmut2LA8saQAQR5G3yKTmyzzW6qG#';
+
 export default function BookingSection({ closingHeadline }: { closingHeadline: string }) {
+  const widgetRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const container = widgetRef.current;
+    if (!container) return;
+
+    const script = document.createElement('script');
+    script.src = VAGARO_WIDGET_SRC;
+    script.async = true;
+    container.appendChild(script);
+
+    return () => {
+      script.remove();
+    };
+  }, []);
+
   return (
     <>
       <section id="book-now" className="bg-cream py-16 text-center">
@@ -33,6 +54,7 @@ export default function BookingSection({ closingHeadline }: { closingHeadline: s
           />
 
           <div
+            ref={widgetRef}
             className="vagaro"
             style={{
               width: '250px',
@@ -42,34 +64,21 @@ export default function BookingSection({ closingHeadline }: { closingHeadline: s
               textAlign: 'center',
             }}
           >
-            <style>{`.vagaro a { font-size: 14px; color: #AAA; text-decoration: none; }`}</style>
+            <style>
+              {'.vagaro a { font-size: 14px; color: #AAA; text-decoration: none; }'}
+            </style>
 
-            <a href="https://www.vagaro.com/pro/">
-              Powered by Vagaro
-            </a>
-
-            {' '}
-
+            <a href="https://www.vagaro.com/pro/">Powered by Vagaro</a>{' '}
             <a href="https://www.vagaro.com/pro/salon-software">
               Salon Software
-            </a>
-
-            {', '}
-
+            </a>,{' '}
             <a href="https://www.vagaro.com/pro/spa-software">
               Spa Software
-            </a>
-
-            {' & '}
-
+            </a>{' '}
+            &{' '}
             <a href="https://www.vagaro.com/pro/fitness-software">
               Fitness Software
             </a>
-
-            <Script
-              src="https://www.vagaro.com//resources/WidgetEmbeddedLoader/OZqqCJ4tE3CcT3qmV35y6RuQlXiz3avV34mC2PeFJ4mC30m9dSycvCu7gCmjZcoapOUc9CvdfQOapkvdfYQ69WOcW?v=GdgSUhAjnfOAJ28TUmut2LA8saQAQR5G3yKTmyzzW6qG#"
-              strategy="afterInteractive"
-            />
           </div>
         </div>
       </section>

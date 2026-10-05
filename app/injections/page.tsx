@@ -1,7 +1,7 @@
 import FinancingBanner from '@/components/financing-banner'; import PageHero from '@/components/page-hero'; import BookNowButton from '@/components/book-now-button'; import BookingSection from '@/components/booking-section';
 
 const injections = [
-  ['Acetylcysteine', '—', '$25'],
+  ['Acetylcysteine', '200 mg/ml', '$25'],
   ['Alpha Lipoic Acid', '—', '$25'],
   ['Amino Blend', '—', '$30'],
   ['Ascorbic Acid', '—', '$30'],
